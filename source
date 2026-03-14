@@ -167,7 +167,6 @@ do
 		Name = "BG",
 		BorderSizePixel = 0,
 		BackgroundTransparency = 1,
-		Visible = false,
 		Size = UDim2.fromScale(1, 0.1823),
 		BorderColor3 = Color3.fromRGB(17, 17, 17),
 		BackgroundColor3 = Color3.fromRGB(255, 255, 255),
@@ -178,6 +177,7 @@ do
 		Name = "MainBG",
 		BorderSizePixel = 0,
 		BackgroundTransparency = 0.4499,
+		Visible = false,
 		Size = UDim2.fromScale(0.9771, 0.1823),
 		Position = UDim2.fromScale(0.0109, 0.8215),
 		BorderColor3 = Color3.fromRGB(17, 17, 17),
@@ -389,7 +389,7 @@ do
 		BorderColor = BrickColor.new("Really black"),
 	}, main)
 
-	local chatWindow = createFrame({
+	local window = createFrame({
 		Name = "Window",
 		BorderSizePixel = 0,
 		BackgroundTransparency = 0.15,
@@ -399,10 +399,10 @@ do
 		BorderColor3 = Color3.fromRGB(17, 17, 17),
 		BorderColor = BrickColor.new("Really black"),
 	}, chatModule)
-	createUICorner(UDim.new(0, 5), chatWindow)
+	createUICorner(UDim.new(0, 5), window)
 	createUIAspectRatioConstraint({
 		AspectRatio = 1.205,
-	}, chatWindow)
+	}, window)
 
 	local chatModuleTop = createFrame({
 		Name = "ChatModuleTop",
@@ -413,7 +413,7 @@ do
 		BackgroundColor3 = Color3.fromRGB(52, 54, 63),
 		BorderColor3 = Color3.fromRGB(17, 17, 17),
 		BorderColor = BrickColor.new("Really black"),
-	}, chatWindow)
+	}, window)
 	createUICorner(UDim.new(0, 5), chatModuleTop)
 	createUIAspectRatioConstraint({
 		AspectRatio = 17,
@@ -463,7 +463,7 @@ do
 		TextSize = 19,
 		TextWrapped = true,
 		Size = UDim2.fromScale(1, 1),
-		Position = UDim2.fromOffset(4, -1),
+		Position = UDim2.fromScale(0.1917, -0.0558),
 		FontFace = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.Bold),
 		TextXAlignment = Enum.TextXAlignment.Left,
 		TextYAlignment = Enum.TextYAlignment.Top,
@@ -491,7 +491,7 @@ do
 	}, chatModuleTop)
 	createUICorner(UDim.new(0, 4), refreshButton)
 
-	local chatContent = createFrame({
+	local content = createFrame({
 		Name = "Content",
 		BorderSizePixel = 0,
 		BackgroundTransparency = 0.4,
@@ -501,10 +501,10 @@ do
 		BorderColor3 = Color3.fromRGB(17, 17, 17),
 		BorderColor = BrickColor.new("Really black"),
 	}, chatModuleTop)
-	createUICorner(UDim.new(0, 5), chatContent)
+	createUICorner(UDim.new(0, 5), content)
 	createUIAspectRatioConstraint({
 		AspectRatio = 1.33,
-	}, chatContent)
+	}, content)
 
 	local chatScrollingFrame = createScrollingFrame({
 		Name = "ScrollingFrame",
@@ -519,7 +519,7 @@ do
 		ScrollBarImageColor3 = Color3.fromRGB(0, 0, 0),
 		BackgroundColor3 = Color3.fromRGB(28, 29, 34),
 		BorderColor = BrickColor.new("Really black"),
-	}, chatContent)
+	}, content)
 	createUICorner(UDim.new(0, 5), chatScrollingFrame)
 	createUIAspectRatioConstraint({
 		AspectRatio = 1.33,
@@ -575,6 +575,7 @@ do
 		existingChatModule.Visible = false
 	end
 end
+
 --\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 -- REFERENCES
 --////////////////////////////////////////////////////
