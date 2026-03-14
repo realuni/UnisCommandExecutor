@@ -29,14 +29,12 @@ local TAB_FILL_COMMANDS
 -- UI CREATION
 --////////////////////////////////////////////////////
 
---\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
--- UI CREATION
---////////////////////////////////////////////////////
-
 do
 	local function applyProps(instance, props)
 		for key, value in pairs(props) do
-			instance[key] = value
+			pcall(function()
+				instance[key] = value
+			end)
 		end
 		return instance
 	end
@@ -169,6 +167,7 @@ do
 		BorderSizePixel = 0,
 		Visible = false,
 		Size = UDim2.fromScale(1, 0.1823),
+		Position = UDim2.fromScale(0, 0.1058),
 		BorderColor3 = Color3.fromRGB(17, 17, 17),
 		BackgroundColor3 = Color3.fromRGB(255, 255, 255),
 		BorderColor = BrickColor.new("Really black"),
@@ -178,23 +177,23 @@ do
 		Name = "MainBG",
 		BorderSizePixel = 0,
 		BackgroundTransparency = 0.4499,
-		Size = UDim2.fromScale(0.9771, 0.1823),
-		Position = UDim2.fromScale(0.011, 0.8215),
+		Size = UDim2.fromScale(0.71, 0.1821),
+		Position = UDim2.fromScale(0.1447, 1.1972),
 		BackgroundColor3 = Color3.fromRGB(28, 29, 34),
 		BorderColor3 = Color3.fromRGB(17, 17, 17),
 		BorderColor = BrickColor.new("Really black"),
 	}, bg)
 
-	createTextLabel({
+	local promptLabel = createTextLabel({
 		Name = "PromptLabel",
-		Text = "LuaUExec@Cmdr$",
+		Text = LocalPlayer.Name .. "@Cmdr$",
 		BackgroundTransparency = 1,
 		BorderSizePixel = 0,
-		TextSize = 14,
-		TextWrapped = true,
-		TextScaled = true,
-		Size = UDim2.fromScale(0.0782, 0.5148),
-		Position = UDim2.fromScale(0.007, 0.2317),
+		TextSize = 16,
+		TextWrapped = false,
+		TextScaled = false,
+		Size = UDim2.new(0, 0, 0.5148, 0),
+		Position = UDim2.new(0, 6, 0.2316, 0),
 		FontFace = Font.new("rbxasset://fonts/families/Inconsolata.json"),
 		TextXAlignment = Enum.TextXAlignment.Left,
 		BackgroundColor3 = Color3.fromRGB(255, 255, 255),
@@ -207,19 +206,20 @@ do
 		Name = "CommandInput",
 		Text = "",
 		PlaceholderText = "Type 'help' to view all of the commands",
-		TextSize = 14,
+		TextSize = 16,
 		CursorPosition = -1,
 		BackgroundTransparency = 1,
 		BorderSizePixel = 0,
 		ClearTextOnFocus = false,
-		TextWrapped = true,
-		TextScaled = true,
-		Size = UDim2.fromScale(0.9146, 0.5148),
-		Position = UDim2.fromScale(0.0852, 0.2317),
+		TextWrapped = false,
+		TextScaled = false,
+		Size = UDim2.new(1, -140, 0.5148, 0),
+		Position = UDim2.new(0, 120, 0.2316, 0),
 		FontFace = Font.new("rbxasset://fonts/families/SourceSansPro.json"),
 		TextXAlignment = Enum.TextXAlignment.Left,
 		BackgroundColor3 = Color3.fromRGB(255, 255, 255),
 		TextColor3 = Color3.fromRGB(227, 227, 227),
+		PlaceholderColor3 = Color3.fromRGB(170, 170, 170),
 		BorderColor3 = Color3.fromRGB(17, 17, 17),
 		BorderColor = BrickColor.new("Really black"),
 	}, mainBg)
@@ -227,10 +227,10 @@ do
 	local helperBg = createFrame({
 		Name = "HelperBG",
 		BorderSizePixel = 0,
-		BackgroundTransparency = 1,
+		BackgroundTransparency = 0.999,
 		Visible = false,
-		Size = UDim2.fromScale(0.9771, 2.5499),
-		Position = UDim2.fromScale(0.011, 1.0499),
+		Size = UDim2.fromScale(0.71, 2.5497),
+		Position = UDim2.fromScale(0.1447, 1.4256),
 		BorderColor3 = Color3.fromRGB(17, 17, 17),
 		BackgroundColor3 = Color3.fromRGB(28, 29, 34),
 		BorderColor = BrickColor.new("Really black"),
@@ -242,7 +242,7 @@ do
 		BorderSizePixel = 0,
 		ScrollBarThickness = 0,
 		Active = true,
-		CanvasSize = UDim2.new(0, 0),
+		CanvasSize = UDim2.new(0, 0, 0, 0),
 		Size = UDim2.fromScale(1, 1),
 		AutomaticCanvasSize = Enum.AutomaticSize.Y,
 		BorderColor3 = Color3.fromRGB(17, 17, 17),
@@ -273,7 +273,7 @@ do
 		Text = "Command Name : Command Description",
 		BackgroundTransparency = 1,
 		BorderSizePixel = 0,
-		TextSize = 17,
+		TextSize = 14,
 		RichText = true,
 		Size = UDim2.new(1, -16, 1, 0),
 		Position = UDim2.fromOffset(8, 0),
@@ -291,7 +291,7 @@ do
 		BackgroundTransparency = 0.4499,
 		Visible = false,
 		Size = UDim2.fromScale(0.18, 0.0917),
-		Position = UDim2.fromScale(0.0944, 0.1881),
+		Position = UDim2.fromScale(0.2275, 0.365),
 		BorderColor3 = Color3.fromRGB(17, 17, 17),
 		BackgroundColor3 = Color3.fromRGB(28, 29, 34),
 		BorderColor = BrickColor.new("Really black"),
@@ -305,7 +305,7 @@ do
 		TextSize = 14,
 		TextWrapped = true,
 		TextScaled = true,
-		Size = UDim2.fromScale(0.9821, 0.1994),
+		Size = UDim2.fromScale(0.9821, 0.1993),
 		Position = UDim2.fromScale(0.0388, 0.0974),
 		FontFace = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.SemiBold),
 		TextXAlignment = Enum.TextXAlignment.Left,
@@ -320,9 +320,9 @@ do
 		Text = "Command Description Goes Here, Command Description Goes Here, Command Description Goes Here, ",
 		BackgroundTransparency = 1,
 		BorderSizePixel = 0,
-		TextSize = 14,
+		TextSize = 16,
 		TextWrapped = true,
-		TextScaled = true,
+		TextScaled = false,
 		Position = UDim2.fromScale(0.0388, 0.3808),
 		Size = UDim2.fromScale(0.9269, 0.4666),
 		FontFace = Font.new("rbxasset://fonts/families/GothamSSm.json"),
@@ -338,7 +338,7 @@ do
 		Name = "Container",
 		BorderSizePixel = 0,
 		BackgroundTransparency = 1,
-		Size = UDim2.fromScale(1, 0.1783),
+		Size = UDim2.fromScale(1, 0.1782),
 		Position = UDim2.fromScale(0, 0.9993),
 		BackgroundColor3 = Color3.fromRGB(255, 255, 255),
 		BorderColor3 = Color3.fromRGB(17, 17, 17),
@@ -366,11 +366,11 @@ do
 		Text = "player esp",
 		BackgroundTransparency = 1,
 		BorderSizePixel = 0,
-		TextSize = 14,
+		TextSize = 16,
 		TextWrapped = true,
-		TextScaled = true,
+		TextScaled = false,
 		Size = UDim2.fromScale(0.9818, 0.5881),
-		Position = UDim2.fromScale(0.0388, 0.1933),
+		Position = UDim2.fromScale(0.0388, 0.1932),
 		FontFace = Font.new("rbxasset://fonts/families/Inconsolata.json"),
 		TextXAlignment = Enum.TextXAlignment.Left,
 		BackgroundColor3 = Color3.fromRGB(255, 255, 255),
@@ -394,8 +394,8 @@ do
 		Name = "Window",
 		BorderSizePixel = 0,
 		BackgroundTransparency = 0.15,
-		Size = UDim2.fromScale(0.2471, 0.4387),
-		Position = UDim2.fromScale(0.3763, 0.329),
+		Size = UDim2.fromScale(0.247, 0.4386),
+		Position = UDim2.fromScale(0.3763, 0.3289),
 		BackgroundColor3 = Color3.fromRGB(0, 0, 0),
 		BorderColor3 = Color3.fromRGB(17, 17, 17),
 		BorderColor = BrickColor.new("Really black"),
@@ -429,7 +429,7 @@ do
 		TextWrapped = true,
 		TextScaled = true,
 		Size = UDim2.fromScale(0.4645, 0.5148),
-		Position = UDim2.fromScale(0.019, 0.2217),
+		Position = UDim2.fromScale(0.0189, 0.2216),
 		FontFace = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.Bold),
 		TextXAlignment = Enum.TextXAlignment.Left,
 		BackgroundColor3 = Color3.fromRGB(255, 255, 255),
@@ -446,58 +446,23 @@ do
 		TextSize = 19,
 		TextWrapped = true,
 		TextScaled = true,
-		Position = UDim2.fromScale(0.9418, 0.1767),
-		Size = UDim2.fromScale(0.044, 0.6443),
+		Position = UDim2.fromScale(0.95, 0.3204),
+		Size = UDim2.fromScale(0.024, 0.6083),
 		FontFace = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.Bold),
 		BorderColor3 = Color3.fromRGB(17, 17, 17),
 		BackgroundColor3 = Color3.fromRGB(198, 38, 38),
 		TextColor3 = Color3.fromRGB(202, 202, 202),
 		BorderColor = BrickColor.new("Really black"),
 	}, chatModuleTop)
-	createUICorner(UDim.new(0, 4), closeButton)
-
-	createTextLabel({
-		Name = "Text",
-		Text = "X",
-		BackgroundTransparency = 1,
-		BorderSizePixel = 0,
-		TextSize = 19,
-		TextWrapped = true,
-		Size = UDim2.fromScale(1, 1),
-		Position = UDim2.fromScale(0.1917, -0.0558),
-		FontFace = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.Bold),
-		TextXAlignment = Enum.TextXAlignment.Left,
-		TextYAlignment = Enum.TextYAlignment.Top,
-		BackgroundColor3 = Color3.fromRGB(255, 255, 255),
-		BorderColor3 = Color3.fromRGB(17, 17, 17),
-		TextColor3 = Color3.fromRGB(202, 202, 202),
-		BorderColor = BrickColor.new("Really black"),
-	}, closeButton)
-
-	local refreshButton = createTextButton({
-		Name = "Refresh",
-		Text = "REF",
-		BackgroundTransparency = 0.4,
-		BorderSizePixel = 0,
-		TextSize = 19,
-		TextWrapped = true,
-		TextScaled = true,
-		Position = UDim2.fromScale(0.8465, 0.1767),
-		Size = UDim2.fromScale(0.0784, 0.6443),
-		FontFace = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.Bold),
-		BorderColor3 = Color3.fromRGB(17, 17, 17),
-		BackgroundColor3 = Color3.fromRGB(47, 198, 83),
-		TextColor3 = Color3.fromRGB(202, 202, 202),
-		BorderColor = BrickColor.new("Really black"),
-	}, chatModuleTop)
-	createUICorner(UDim.new(0, 4), refreshButton)
+	createUICorner(UDim.new(1, 0), closeButton)
+	createUIAspectRatioConstraint({}, closeButton)
 
 	local content = createFrame({
 		Name = "Content",
 		BorderSizePixel = 0,
 		BackgroundTransparency = 0.4,
 		Size = UDim2.fromScale(1, 12.81),
-		Position = UDim2.fromScale(0, 1.3093),
+		Position = UDim2.fromScale(0, 1.3092),
 		BackgroundColor3 = Color3.fromRGB(52, 54, 63),
 		BorderColor3 = Color3.fromRGB(17, 17, 17),
 		BorderColor = BrickColor.new("Really black"),
@@ -513,9 +478,9 @@ do
 		BorderSizePixel = 0,
 		ScrollBarImageTransparency = 1,
 		Active = true,
-		Position = UDim2.fromScale(0.0149, 0.0209),
+		Position = UDim2.fromScale(0.0148, 0.0208),
 		Size = UDim2.fromScale(0.9718, 0.9613),
-		CanvasSize = UDim2.fromScale(0, 200),
+		CanvasSize = UDim2.fromOffset(0, 200),
 		BorderColor3 = Color3.fromRGB(17, 17, 17),
 		ScrollBarImageColor3 = Color3.fromRGB(0, 0, 0),
 		BackgroundColor3 = Color3.fromRGB(28, 29, 34),
@@ -538,9 +503,9 @@ do
 		Text = "USERNAME : MESSAGE",
 		BackgroundTransparency = 1,
 		BorderSizePixel = 0,
-		TextSize = 19,
+		TextSize = 12,
 		TextWrapped = true,
-		Size = UDim2.new(0.9499, 0, 0, 5),
+		Size = UDim2.new(0.9498, 0, 0, 5),
 		Position = UDim2.fromScale(0, 0),
 		FontFace = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.Bold),
 		TextXAlignment = Enum.TextXAlignment.Left,
@@ -550,6 +515,25 @@ do
 		TextColor3 = Color3.fromRGB(202, 177, 53),
 		BorderColor = BrickColor.new("Really black"),
 	}, chatScrollingFrame)
+
+	local refreshButton = createTextButton({
+		Name = "Refresh",
+		Text = "",
+		BackgroundTransparency = 0.4,
+		BorderSizePixel = 0,
+		TextSize = 19,
+		TextWrapped = true,
+		TextScaled = true,
+		Position = UDim2.fromScale(0.91, 0.3199),
+		Size = UDim2.fromScale(0.024, 0.6083),
+		FontFace = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.Bold),
+		BorderColor3 = Color3.fromRGB(17, 17, 17),
+		BackgroundColor3 = Color3.fromRGB(81, 198, 45),
+		TextColor3 = Color3.fromRGB(202, 202, 202),
+		BorderColor = BrickColor.new("Really black"),
+	}, chatModuleTop)
+	createUICorner(UDim.new(1, 0), refreshButton)
+	createUIAspectRatioConstraint({}, refreshButton)
 
 	local uiParent
 
@@ -590,6 +574,7 @@ UI.Title3 = UI.Welcome:WaitForChild("Title3")
 UI.BG = UI.Main:WaitForChild("BG")
 UI.MainBG = UI.BG:WaitForChild("MainBG")
 UI.MainBg = UI.MainBG
+UI.PromptLabel = UI.MainBG:WaitForChild("PromptLabel")
 UI.CommandInput = UI.MainBG:WaitForChild("CommandInput")
 
 UI.CommandSuggester = UI.Main:WaitForChild("CommandSuggester")
@@ -613,6 +598,44 @@ UI.ChatRefreshButton = UI.ChatModuleTop:WaitForChild("Refresh")
 UI.ChatContent = UI.ChatModuleTop:WaitForChild("Content")
 UI.ChatScrollingFrame = UI.ChatContent:WaitForChild("ScrollingFrame")
 UI.ChatMessageTemplate = UI.ChatScrollingFrame:WaitForChild("PlayerUsername")
+
+local function updatePromptAndInputLayout()
+	local leftPadding = 18
+	local gap = 10
+	local rightPadding = 6
+	local suggesterYScale = 0.3651
+	local suggesterYOffset = 0
+
+	UI.PromptLabel.Text = LocalPlayer.Name .. "@Cmdr$"
+
+	task.defer(function()
+		if not UI.PromptLabel or not UI.PromptLabel.Parent then
+			return
+		end
+
+		local promptWidth = math.ceil(UI.PromptLabel.TextBounds.X)
+		local inputX = leftPadding + promptWidth + gap
+
+		UI.PromptLabel.Position = UDim2.new(0, leftPadding, 0.2316, 0)
+		UI.PromptLabel.Size = UDim2.new(0, promptWidth, 0.5148, 0)
+
+		UI.CommandInput.Position = UDim2.new(0, inputX, 0.2316, 0)
+		UI.CommandInput.Size = UDim2.new(1, -(inputX + rightPadding), 0.5148, 0)
+
+		UI.CommandSuggester.Position = UDim2.new(
+			0,
+			UI.MainBG.AbsolutePosition.X + inputX,
+			suggesterYScale,
+			suggesterYOffset
+		)
+	end)
+end
+
+updatePromptAndInputLayout()
+
+UI.PromptLabel:GetPropertyChangedSignal("TextBounds"):Connect(updatePromptAndInputLayout)
+UI.MainBG:GetPropertyChangedSignal("AbsolutePosition"):Connect(updatePromptAndInputLayout)
+UI.MainBG:GetPropertyChangedSignal("AbsoluteSize"):Connect(updatePromptAndInputLayout)
 
 --\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 -- SETTINGS
@@ -777,7 +800,7 @@ CONFIG = {
 	COLOR_NORMAL = Color3.fromRGB(159,182,202),
 	COLOR_SPOTLIGHT = Color3.fromRGB(255,255,255),
 
-	MAX_SUGGESTIONS = 25,
+	MAX_SUGGESTIONS = 20,
 
 	CLICKTP_MAX_DISTANCE = 1000,
 	CLICKTP_MIN_Y = -1000,
@@ -6060,7 +6083,7 @@ do
 					error("loadstring not supported by this executor")
 				end
 
-				local src = httpget(game, "https://raw.githubusercontent.com/LorekeeperZinnia/Dex/master/main.lua")
+				local src = httpget(game, "https://raw.githubusercontent.com/infyiff/backup/main/dex.lua")
 				loader(src)()
 			end)
 
@@ -6185,6 +6208,30 @@ do
 			humanoid:ChangeState(Enum.HumanoidStateType.Jumping)
 			print("[SUCCESS] Jumped")
 		end
+
+		function CommandHandlers.remotespy()
+			print("[SUCCESS] Loading RemoteSpy...")
+
+			local success, err = pcall(function()
+				local httpget = game.HttpGet or game.httpget
+				local loader = loadstring or load
+
+				if not httpget then
+					error("HttpGet not supported by this executor")
+				end
+
+				if not loader then
+					error("loadstring not supported by this executor")
+				end
+
+				local src = httpget(game, "https://raw.githubusercontent.com/infyiff/backup/main/SimpleSpyV3/main.lua")
+				loader(src)()
+			end)
+
+			if not success then
+				print("[FAIL] Could not load RemoteSpy:", err)
+			end
+		end
 	end
 
 	addCommand("esp", "Displays a customizable nametag above every player displaying their username, health and distance from you in studs", CommandHandlers.esp, "visual")
@@ -6286,6 +6333,7 @@ do
 	addCommand("teleportwalkto", "Smooth pathfind-walks to the target player", CommandHandlers.teleportwalkto, "player", {"tpwt"})
 	addCommand("unteleportwalkto", "Stops teleportwalkto", CommandHandlers.unteleportwalkto, "player", {"untpwt"})
 	addCommand("jump", "Makes your character jump once", CommandHandlers.jump, "player")
+	addCommand("remotespy", "Loads the SimpleSpy V3 remote spy tool", CommandHandlers.remotespy, "utility")
 	rebuildCommandRegistryCaches()
 end
 
