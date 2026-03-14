@@ -3665,22 +3665,18 @@ do
 			end
 
 			local camera = workspace.CurrentCamera
-			local localRoot = getTracerTargetPart(LocalPlayer.Character)
+			local localCharacter = LocalPlayer.Character
+			local localRoot = localCharacter and localCharacter:FindFirstChild("HumanoidRootPart")
 
 			if not camera or not localRoot then
 				clearAllTracers()
 				return
 			end
 
-			local localScreenPos, localOnScreen = camera:WorldToViewportPoint(localRoot.Position)
-			if not localOnScreen or localScreenPos.Z <= 0 then
-				for _, line in pairs(STATE.tracerFrames) do
-					line.Visible = false
-				end
-				return
-			end
+			local viewport = camera.ViewportSize
+			local topPadding = 12
+			local tracerOrigin = Vector2.new(viewport.X * 0.5, topPadding)
 
-			local tracerOrigin = Vector2.new(localScreenPos.X, localScreenPos.Y)
 			local stillExists = {}
 
 			for _, player in ipairs(Players:GetPlayers()) do
